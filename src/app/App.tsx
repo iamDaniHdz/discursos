@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
+import {AppNavigator} from '../navigation/AppNavigator';
 
 export function App(): React.JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
@@ -8,13 +9,7 @@ export function App(): React.JSX.Element {
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" />
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <View style={styles.container} />
+        <AppNavigator />
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
