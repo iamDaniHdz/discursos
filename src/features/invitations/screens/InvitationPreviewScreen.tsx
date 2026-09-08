@@ -14,21 +14,37 @@ import type {
   InvitationPreviewScreenProps,
 } from '../../../navigation/navigation.types';
 
+import Share from 'react-native-share';
+
 export function InvitationPreviewScreen({
   route,
 }: InvitationPreviewScreenProps): React.JSX.Element {
-  const {invitation} = route.params;
+    const {invitation} = route.params;
 
-  const handleShare = async (): Promise<void> => {
+    const handleShare = async (): Promise<void> => {
     try {
-      const uri = await viewShotRef.current?.capture?.();
+        const uri = await viewShotRef.current?.capture?.();
+        
+        if (!uri) {
+        return;
+        }
 
-      console.log('Image URI:', uri);
+        const url = uri.startsWith('file://')
+            ? uri
+            : `file://${uri}`;
+
+
+        await Share.open({
+        url,
+        type: 'image/png',
+        failOnCancel: false,
+        title: 'Invitación de discurso público',
+        message: 'Te comparto esta invitación.',
+        });
     } catch (error) {
-      console.error(error);
+        console.error('Error sharing image:', error);
     }
-  };
-
+    };
   const viewShotRef =
   useRef<ViewShot>(null);
 
@@ -36,7 +52,17 @@ export function InvitationPreviewScreen({
     <View style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.content}>
-        <ViewShot ref={viewShotRef}>
+        <ViewShot
+            ref={viewShotRef}
+            style={{
+                backgroundColor: '#F5F7FC',
+                padding: 28,
+            }}
+            options={{
+                format: 'png',
+                quality: 1,
+            result: 'tmpfile',
+        }}>
             <InvitationCard invitation={invitation} />
         </ViewShot>
       </ScrollView>
@@ -55,10 +81,11 @@ export function InvitationPreviewScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F5F7FC',
   },
 
   content: {
-    padding: 16,
+    padding: 0,
   },
 
   footer: {

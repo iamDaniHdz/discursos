@@ -91,7 +91,7 @@ export function InvitationCard({
   const {colors} = useTheme();
 
   return (
-    <Card style={styles.card}>
+    <Card mode='contained' style={styles.card}>
       <Card.Content>
         {/* HEADER */}
 
