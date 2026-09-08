@@ -7,8 +7,10 @@ import {HomeStackNavigator} from './HomeStackNavigator';
 import {DiscoursesStackNavigator} from './DiscoursesStackNavigator';
 
 import type {BottomTabParamList} from './navigation.types';
+import { useTheme } from 'react-native-paper';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
+const {colors} = useTheme();
 
 export function BottomTabNavigator(): React.JSX.Element {
   return (
@@ -16,6 +18,8 @@ export function BottomTabNavigator(): React.JSX.Element {
       initialRouteName="HomeStack"
       screenOptions={({route}) => ({
         headerShown: false,
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.outline,
         tabBarIcon: ({color, size}) => {
           let iconName: string;
 
