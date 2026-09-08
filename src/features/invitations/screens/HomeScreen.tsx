@@ -3,9 +3,11 @@ import {View, Text, StyleSheet} from 'react-native';
 
 export function HomeScreen(): React.JSX.Element {
   return (
+    <>
     <View style={styles.container}>
       <Text>Home Screen</Text>
     </View>
+    </>
   );
 }
 

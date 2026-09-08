@@ -7,7 +7,6 @@ export function App(): React.JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle="dark-content" />
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <AppNavigator />
     </SafeAreaProvider>

@@ -1,3 +1,6 @@
+// src/navigation/navigation.types.ts
+
+import type {NavigatorScreenParams} from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export interface InvitationDraft {
@@ -11,8 +14,12 @@ export interface InvitationDraft {
   speakerContact: string;
 }
 
-export type RootStackParamList = {
+export type HomeStackParamList = {
   Home: undefined;
+};
+
+export type DiscoursesStackParamList = {
+  Discourses: undefined;
 
   InvitationForm: undefined;
 
@@ -21,12 +28,39 @@ export type RootStackParamList = {
   };
 };
 
+export type BottomTabParamList = {
+  HomeStack: NavigatorScreenParams<HomeStackParamList>;
+
+  DiscoursesStack: NavigatorScreenParams<DiscoursesStackParamList>;
+};
+
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
+    interface RootParamList extends BottomTabParamList {}
   }
 }
 
-export type RootStackScreenProps<
-  TRouteName extends keyof RootStackParamList,
-> = NativeStackScreenProps<RootStackParamList, TRouteName>;
+// Home
+
+export type HomeScreenProps =
+  NativeStackScreenProps<HomeStackParamList, 'Home'>;
+
+// Discursos
+
+export type DiscoursesScreenProps =
+  NativeStackScreenProps<
+    DiscoursesStackParamList,
+    'Discourses'
+  >;
+
+export type InvitationFormScreenProps =
+  NativeStackScreenProps<
+    DiscoursesStackParamList,
+    'InvitationForm'
+  >;
+
+export type InvitationPreviewScreenProps =
+  NativeStackScreenProps<
+    DiscoursesStackParamList,
+    'InvitationPreview'
+  >;
