@@ -1,5 +1,3 @@
-// src/navigation/navigation.types.ts
-
 import type {NavigatorScreenParams} from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
