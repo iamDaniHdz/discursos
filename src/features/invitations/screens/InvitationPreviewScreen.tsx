@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, {useRef} from 'react';
+import ViewShot from 'react-native-view-shot';
 import {
   ScrollView,
   StyleSheet,
@@ -19,17 +19,26 @@ export function InvitationPreviewScreen({
 }: InvitationPreviewScreenProps): React.JSX.Element {
   const {invitation} = route.params;
 
-  const handleShare = (): void => {
-    console.log('Compartir');
+  const handleShare = async (): Promise<void> => {
+    try {
+      const uri = await viewShotRef.current?.capture?.();
+
+      console.log('Image URI:', uri);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  const viewShotRef =
+  useRef<ViewShot>(null);
 
   return (
     <View style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.content}>
-        <InvitationCard
-          invitation={invitation}
-        />
+        <ViewShot ref={viewShotRef}>
+            <InvitationCard invitation={invitation} />
+        </ViewShot>
       </ScrollView>
 
       <View style={styles.footer}>
