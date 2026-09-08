@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, {useRef} from 'react';
+import ViewShot from 'react-native-view-shot';
 import {
   ScrollView,
   StyleSheet,
@@ -14,22 +14,57 @@ import type {
   InvitationPreviewScreenProps,
 } from '../../../navigation/navigation.types';
 
+import Share from 'react-native-share';
+
 export function InvitationPreviewScreen({
   route,
 }: InvitationPreviewScreenProps): React.JSX.Element {
-  const {invitation} = route.params;
+    const {invitation} = route.params;
 
-  const handleShare = (): void => {
-    console.log('Compartir');
-  };
+    const handleShare = async (): Promise<void> => {
+    try {
+        const uri = await viewShotRef.current?.capture?.();
+        
+        if (!uri) {
+        return;
+        }
+
+        const url = uri.startsWith('file://')
+            ? uri
+            : `file://${uri}`;
+
+
+        await Share.open({
+        url,
+        type: 'image/png',
+        failOnCancel: false,
+        title: 'Invitación de discurso público',
+        message: 'Te comparto esta invitación.',
+        });
+    } catch (error) {
+        console.error('Error sharing image:', error);
+    }
+    };
+  const viewShotRef =
+  useRef<ViewShot>(null);
 
   return (
     <View style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.content}>
-        <InvitationCard
-          invitation={invitation}
-        />
+        <ViewShot
+            ref={viewShotRef}
+            style={{
+                backgroundColor: '#F5F7FC',
+                padding: 28,
+            }}
+            options={{
+                format: 'png',
+                quality: 1,
+            result: 'tmpfile',
+        }}>
+            <InvitationCard invitation={invitation} />
+        </ViewShot>
       </ScrollView>
 
       <View style={styles.footer}>
@@ -46,10 +81,11 @@ export function InvitationPreviewScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F5F7FC',
   },
 
   content: {
-    padding: 16,
+    padding: 0,
   },
 
   footer: {

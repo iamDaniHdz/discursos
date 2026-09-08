@@ -91,7 +91,7 @@ export function InvitationCard({
   const {colors} = useTheme();
 
   return (
-    <Card style={styles.card}>
+    <Card mode='contained' style={styles.card}>
       <Card.Content>
         {/* HEADER */}
 
@@ -177,7 +177,8 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 24,
     paddingVertical: 12,
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
+    width: '100%',
   },
 
   header: {
