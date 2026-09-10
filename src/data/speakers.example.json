@@ -1,0 +1,9 @@
+[
+  {
+    "id": "nombre-apellido",
+    "name": "Nombre Apellido",
+    "congregation": "Congregación",
+    "contact": "999 999 9999",
+    "active": true
+  }
+]

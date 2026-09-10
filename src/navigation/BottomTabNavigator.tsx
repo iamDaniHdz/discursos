@@ -8,6 +8,7 @@ import {DiscoursesStackNavigator} from './DiscoursesStackNavigator';
 
 import type {BottomTabParamList} from './navigation.types';
 import { useTheme } from 'react-native-paper';
+import { SettingsStackNavigator } from './SettingsStackNavigator';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 const {colors} = useTheme();
@@ -30,6 +31,10 @@ export function BottomTabNavigator(): React.JSX.Element {
 
             case 'DiscoursesStack':
               iconName = 'book-open-variant-outline';
+              break;
+
+            case 'SettingsStack':
+              iconName = 'cog-outline';
               break;
 
             default:
@@ -58,6 +63,14 @@ export function BottomTabNavigator(): React.JSX.Element {
         component={DiscoursesStackNavigator}
         options={{
           title: 'Discursos',
+        }}
+      />
+
+      <Tab.Screen
+        name="SettingsStack"
+        component={SettingsStackNavigator}
+        options={{
+          title: 'Ajustes',
         }}
       />
     </Tab.Navigator>

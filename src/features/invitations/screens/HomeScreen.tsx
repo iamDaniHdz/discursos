@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ScrollView, StyleSheet, View } from 'react-native';
 
-import { Button, Card, Text, useTheme } from 'react-native-paper';
+import { Icon, Card, Text, useTheme } from 'react-native-paper';
 
 import groups from '../../../data/groups.json';
 import speakers from '../../../data/speakers.json';
@@ -55,42 +55,98 @@ export function HomeScreen({ navigation }: HomeScreenProps): React.JSX.Element {
       </Text>
 
       <View style={styles.statsGrid}>
-        <Card mode='contained' style={styles.statCard}>
-          <Card.Content>
-            <Text variant="titleSmall">Invitaciones</Text>
+        <Card mode="contained" style={styles.statCard}>
+          <Card.Content style={styles.statContent}>
+            <View style={styles.statIconContainer}>
+              <Icon
+                source="file-document-outline"
+                size={26}
+                color="#345995"
+              />
+            </View>
 
-            <Text variant="displaySmall" style={styles.counter}>
+            <Text
+              variant="headlineMedium"
+              style={styles.counter}>
               0
             </Text>
+
+            <Text
+              variant="bodyMedium"
+              style={styles.statLabel}>
+              Invitaciones
+            </Text>
           </Card.Content>
         </Card>
 
-        <Card mode='contained' style={styles.statCard}>
-          <Card.Content>
-            <Text variant="titleSmall">Discursos</Text>
+        <Card mode="contained" style={styles.statCard}>
+          <Card.Content style={styles.statContent}>
+            <View style={styles.statIconContainer}>
+              <Icon
+                source="book-open-outline"
+                size={26}
+                color="#345995"
+              />
+            </View>
 
-            <Text variant="displaySmall" style={styles.counter}>
+            <Text
+              variant="headlineMedium"
+              style={styles.counter}>
               {speechesCount}
             </Text>
-          </Card.Content>
-        </Card>
 
-        <Card mode='contained' style={styles.statCard}>
-          <Card.Content>
-            <Text variant="titleSmall">Oradores</Text>
-
-            <Text variant="displaySmall" style={styles.counter}>
-              {speakersCount}
+            <Text
+              variant="bodyMedium"
+              style={styles.statLabel}>
+              Discursos
             </Text>
           </Card.Content>
         </Card>
 
-        <Card mode='contained' style={styles.statCard}>
-          <Card.Content>
-            <Text variant="titleSmall">Congregaciones</Text>
+        <Card mode="contained" style={styles.statCard}>
+          <Card.Content style={styles.statContent}>
+            <View style={styles.statIconContainer}>
+              <Icon
+                source="account-voice"
+                size={26}
+                color="#345995"
+              />
+            </View>
 
-            <Text variant="displaySmall" style={styles.counter}>
+            <Text
+              variant="headlineMedium"
+              style={styles.counter}>
+              {speakersCount}
+            </Text>
+
+            <Text
+              variant="bodyMedium"
+              style={styles.statLabel}>
+              Oradores
+            </Text>
+          </Card.Content>
+        </Card>
+
+        <Card mode="contained" style={styles.statCard}>
+          <Card.Content style={styles.statContent}>
+            <View style={styles.statIconContainer}>
+              <Icon
+                source="account-group-outline"
+                size={26}
+                color="#345995"
+              />
+            </View>
+
+            <Text
+              variant="headlineMedium"
+              style={styles.counter}>
               {groupsCount}
+            </Text>
+
+            <Text
+              variant="bodyMedium"
+              style={styles.statLabel}>
+              Congregaciones
             </Text>
           </Card.Content>
         </Card>
@@ -175,5 +231,29 @@ const styles = StyleSheet.create({
     width: '48%',
     borderRadius: 16,
     backgroundColor: '#FFF'
+  },
+
+  statContent: {
+    alignItems: 'center',
+    paddingHorizontal: 4,
+  },
+
+  statIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 14,
+
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    marginBottom: 10,
+
+    backgroundColor: '#EDF3FF',
+  },
+
+  statLabel: {
+    marginTop: 4,
+    opacity: 0.75,
+    textAlign: 'center',
   },
 });
