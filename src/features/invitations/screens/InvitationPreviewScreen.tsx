@@ -20,7 +20,6 @@ export function InvitationPreviewScreen({
   route,
 }: InvitationPreviewScreenProps): React.JSX.Element {
     const {invitation} = route.params;
-
     const handleShare = async (): Promise<void> => {
     try {
         const uri = await viewShotRef.current?.capture?.();
@@ -39,7 +38,7 @@ export function InvitationPreviewScreen({
         type: 'image/png',
         failOnCancel: false,
         title: 'Invitación de discurso público',
-        message: 'Te comparto esta invitación.',
+        message: `Buen día hno. *${invitation.speakerName}*, le comparto su asignación de Discurso Público para discursar en la Congregación *${invitation.hostCongregation}*. Saludos cordiales.`,
         });
     } catch (error) {
         console.error('Error sharing image:', error);
@@ -55,7 +54,7 @@ export function InvitationPreviewScreen({
         <ViewShot
             ref={viewShotRef}
             style={{
-                backgroundColor: '#F5F7FC',
+                backgroundColor: '#F9F9FF',
                 padding: 28,
             }}
             options={{

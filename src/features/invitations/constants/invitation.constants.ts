@@ -1,7 +1,7 @@
 import type { InvitationDraft } from '../models/invitation.types';
 
 export const INITIAL_INVITATION: InvitationDraft = {
-  outlineNumber: '',
+  speechNumber: '',
   topic: '',
   speechDate: '',
   speechTime: '',
