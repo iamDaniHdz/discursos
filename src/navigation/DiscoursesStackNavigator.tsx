@@ -17,7 +17,8 @@ export function DiscoursesStackNavigator(): React.JSX.Element {
       screenOptions={{
         headerShadowVisible: false,
         animation: 'slide_from_right',
-      }}>
+      }}
+    >
       <Stack.Screen
         name="Discourses"
         component={DiscoursesScreen}
@@ -32,7 +33,10 @@ export function DiscoursesStackNavigator(): React.JSX.Element {
         component={InvitationFormScreen}
         options={{
           title: 'Nueva invitación',
-          headerShown: false,
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#F9F9FF',
+          },
         }}
       />
 
@@ -40,8 +44,11 @@ export function DiscoursesStackNavigator(): React.JSX.Element {
         name="InvitationPreview"
         component={InvitationPreviewScreen}
         options={{
-          headerShown: false,
           title: 'Vista previa',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#F9F9FF',
+          },
         }}
       />
     </Stack.Navigator>

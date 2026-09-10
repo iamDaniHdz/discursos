@@ -20,8 +20,6 @@ export function InvitationPreviewScreen({
   route,
 }: InvitationPreviewScreenProps): React.JSX.Element {
     const {invitation} = route.params;
-console.log(invitation.speakerName);
-
     const handleShare = async (): Promise<void> => {
     try {
         const uri = await viewShotRef.current?.capture?.();
@@ -56,7 +54,7 @@ console.log(invitation.speakerName);
         <ViewShot
             ref={viewShotRef}
             style={{
-                backgroundColor: '#F5F7FC',
+                backgroundColor: '#F9F9FF',
                 padding: 28,
             }}
             options={{
