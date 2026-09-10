@@ -26,10 +26,16 @@ export type DiscoursesStackParamList = {
   };
 };
 
+export type SettingsStackParamList = {
+  Home: undefined;
+};
+
 export type BottomTabParamList = {
   HomeStack: NavigatorScreenParams<HomeStackParamList>;
 
   DiscoursesStack: NavigatorScreenParams<DiscoursesStackParamList>;
+
+  SettingsStack: NavigatorScreenParams<SettingsStackParamList>;
 };
 
 declare global {
