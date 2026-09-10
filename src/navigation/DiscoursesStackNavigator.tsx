@@ -23,6 +23,7 @@ export function DiscoursesStackNavigator(): React.JSX.Element {
         component={DiscoursesScreen}
         options={{
           title: 'Discursos',
+          headerShown: false,
         }}
       />
 
@@ -31,6 +32,7 @@ export function DiscoursesStackNavigator(): React.JSX.Element {
         component={InvitationFormScreen}
         options={{
           title: 'Nueva invitación',
+          headerShown: false,
         }}
       />
 
@@ -38,6 +40,7 @@ export function DiscoursesStackNavigator(): React.JSX.Element {
         name="InvitationPreview"
         component={InvitationPreviewScreen}
         options={{
+          headerShown: false,
           title: 'Vista previa',
         }}
       />

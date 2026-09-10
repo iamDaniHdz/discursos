@@ -1,5 +1,5 @@
 export interface InvitationDraft {
-  outlineNumber: string;
+  speechNumber: string;
   topic: string;
   speechDate: string;
   speechTime: string;

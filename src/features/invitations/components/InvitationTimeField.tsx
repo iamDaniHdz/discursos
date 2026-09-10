@@ -1,50 +1,74 @@
 import React from 'react';
 
-import { Pressable, StyleSheet, View } from 'react-native';
-import { Text, TextInput } from 'react-native-paper';
+import {
+  Pressable,
+  StyleSheet,
+  View,
+} from 'react-native';
+
+import {
+  HelperText,
+  Text,
+  TextInput,
+  useTheme,
+} from 'react-native-paper';
 
 interface InvitationTimeFieldProps {
-  label?: string;
   value: string;
+  placeholder?: string;
   onPress: () => void;
   error?: string;
-  disabled?: boolean;
   externalLabel?: string;
 }
 
 export function InvitationTimeField({
-  label,
   value,
+  placeholder,
   onPress,
   error,
-  disabled = false,
   externalLabel,
 }: InvitationTimeFieldProps): React.JSX.Element {
+  const theme = useTheme();
+
   return (
     <View>
       {externalLabel ? (
-        <Text variant="labelMedium" style={styles.label}>
+        <Text
+          variant="labelLarge"
+          style={styles.label}>
           {externalLabel}
         </Text>
       ) : null}
 
-      <Pressable onPress={onPress} disabled={disabled}>
+      <Pressable onPress={onPress}>
         <TextInput
           mode="outlined"
-          label={label}
+          placeholder={placeholder}
+          placeholderTextColor={'#97A4AF'}
           value={value}
           editable={false}
-          disabled={disabled}
           pointerEvents="none"
+          left={
+            <TextInput.Icon
+              icon="clock-outline"
+              color={theme.colors.primary}
+            />
+          }
           error={Boolean(error)}
-          left={<TextInput.Icon icon="clock-outline" />}
+          outlineStyle={styles.input}
+          theme={{
+            colors: {
+              primary: theme.colors.primary,
+              outline: 'transparent',
+            },
+          }}
         />
       </Pressable>
 
       {error ? (
-        <Text variant="bodySmall" style={styles.error}>
+        <HelperText type="error" visible>
           {error}
-        </Text>
+        </HelperText>
       ) : null}
     </View>
   );
@@ -55,9 +79,9 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
 
-  error: {
-    color: '#BA1A1A',
-    marginTop: 4,
-    marginLeft: 12,
+  input: {
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: '#FFF',
   },
 });

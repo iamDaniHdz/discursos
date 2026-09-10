@@ -20,7 +20,7 @@ export function HomeStackNavigator(): React.JSX.Element {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Inicio',
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

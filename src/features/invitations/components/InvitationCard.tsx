@@ -137,7 +137,7 @@ export function InvitationCard({
           <View style={styles.topicContent}>
             <View style={styles.badge}>
               <Text style={styles.badgeText}>
-                Bosquejo {invitation.outlineNumber}
+                Bosquejo {invitation.speechNumber}
               </Text>
             </View>
 

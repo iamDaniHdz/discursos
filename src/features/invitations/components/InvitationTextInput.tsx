@@ -1,12 +1,12 @@
 import { HelperText, Text, TextInput, useTheme } from 'react-native-paper';
 import type { ComponentProps } from 'react';
-import { StyleSheet, View } from 'react-native';
-
+import { StyleSheet, View, StyleProp, ViewStyle} from 'react-native';
 interface InvitationTextInputProps {
   value: string;
   onChangeText: (value: string) => void;
 
   label?: string;
+  placeholder?: string;
   externalLabel?: string;
   leftIcon?: ComponentProps<typeof TextInput.Icon>['icon'];
 
@@ -16,12 +16,15 @@ interface InvitationTextInputProps {
   numberOfLines?: number;
   disabled?: boolean;
   maxLength?: number;
+
+  inputStyle?: StyleProp<ViewStyle>;
 }
 
 export function InvitationTextInput({
   value,
   onChangeText,
   label,
+  placeholder,
   externalLabel,
   leftIcon,
   error,
@@ -30,6 +33,7 @@ export function InvitationTextInput({
   numberOfLines = 1,
   disabled = false,
   maxLength,
+  inputStyle,
 }: InvitationTextInputProps): React.JSX.Element {
   const theme = useTheme();
   return (
@@ -44,6 +48,8 @@ export function InvitationTextInput({
         mode="outlined"
         value={value}
         label={label}
+        placeholder={placeholder}
+        placeholderTextColor={'#97A4AF'}
         onChangeText={onChangeText}
         left={
           leftIcon ? (
@@ -57,6 +63,7 @@ export function InvitationTextInput({
         disabled={disabled}
         maxLength={maxLength}
         outlineStyle={styles.input}
+        style={inputStyle}
         theme={{
           colors: {
             primary: theme.colors.primary,

@@ -1,11 +1,21 @@
 import React from 'react';
 
-import { Pressable, StyleSheet, View } from 'react-native';
-import { Text, TextInput } from 'react-native-paper';
+import {
+  Pressable,
+  StyleSheet,
+  View,
+} from 'react-native';
+
+import {
+  HelperText,
+  Text,
+  TextInput,
+  useTheme,
+} from 'react-native-paper';
 
 interface InvitationDateFieldProps {
-  label?: string;
   value: string;
+  placeholder?: string;
   onPress: () => void;
   error?: string;
   externalLabel?: string;
@@ -13,14 +23,19 @@ interface InvitationDateFieldProps {
 
 export function InvitationDateField({
   value,
+  placeholder,
   onPress,
   error,
   externalLabel,
 }: InvitationDateFieldProps): React.JSX.Element {
+  const theme = useTheme();
+
   return (
     <View>
       {externalLabel ? (
-        <Text variant="labelMedium" style={styles.label}>
+        <Text
+          variant="labelLarge"
+          style={styles.label}>
           {externalLabel}
         </Text>
       ) : null}
@@ -28,18 +43,32 @@ export function InvitationDateField({
       <Pressable onPress={onPress}>
         <TextInput
           mode="outlined"
+          placeholder={placeholder}
+          placeholderTextColor={'#97A4AF'}
           value={value}
           editable={false}
           pointerEvents="none"
-          left={<TextInput.Icon icon="calendar-outline" />}
+          left={
+            <TextInput.Icon
+              icon="calendar-outline"
+              color={theme.colors.primary}
+            />
+          }
           error={Boolean(error)}
+          outlineStyle={styles.input}
+          theme={{
+            colors: {
+              primary: theme.colors.primary,
+              outline: 'transparent',
+            },
+          }}
         />
       </Pressable>
 
       {error ? (
-        <Text variant="bodySmall" style={styles.error}>
+        <HelperText type="error" visible>
           {error}
-        </Text>
+        </HelperText>
       ) : null}
     </View>
   );
@@ -50,9 +79,9 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
 
-  error: {
-    color: '#BA1A1A',
-    marginTop: 4,
-    marginLeft: 12,
+  input: {
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: '#FFF',
   },
 });
